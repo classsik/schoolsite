@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load static wagtailcore_tags %}
+
+{% block body_class %}template-searchresults{% endblock %}
+
+{% block title %}Поиск по сайту{% endblock %}
+
+{% block content %}
+<div class="container mt-1 ">
+   <h1>Поиск по сайту</h1>
+    <div class="row">
+        <div class="col-sm-3">
+            <form action="{% url 'search' %}" method="get" class="form">
+                <input type="text" id="form1" name="query" {% if search_query %} value="{{ search_query }}" {% endif %} class="form-control mb-2 border-warning" placeholder="Что Вы хотите найти?">
+                <input type="submit" value="Поиск" class="btn btn-outline-warning mb-3">
+            </form>
+        </div>
+    </div>
+
+
+
+
+{% if search_results %}
+<ul class="">
+    {% for result in search_results %}
+    <li>
+        <h4><a href="{% pageurl result %}" class="btn btn-success">{{ result }}</a></h4>
+        {% if result.search_description %}
+        {{ result.search_description }}
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+
+{% if search_results.has_previous %}
+<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% if search_results.has_next %}
+<a href="{% url 'search' %}?query={{ search_query|urlencode }}&amp;page={{ search_results.next_page_number }}">Next</a>
+{% endif %}
+{% elif search_query %}
+Ничего не найдено ¯ \ _ (ツ) _ / ¯
+{% endif %}
+
+</div>
+{% endblock %}

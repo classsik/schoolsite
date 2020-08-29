@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ 
+{% load wagtailcore_tags wagtailimages_tags %}
+ 
+{% block body_class %}template-otherpage{% endblock %}
+ 
+{% block content %}
+    <div class="container">
+        {% for block in page.body %}
+            {% if block.block_type == 'Заголовок' %}
+                <h1 class="display-6">{{ block.value }}</h1>
+            {% elif block.block_type == 'Изображение' %}
+                {% image block.value original as img %}
+                <img src="{{ img.url }}" alt="" class="img-fluid">
+            {% else %}
+                <section class="block-{{ block.block_type }}">
+                    {% include_block block %}
+                </section>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

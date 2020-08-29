@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% load menu_tags %}
+<ul class="navbar-nav mr-auto mb-2 mb-lg-0">
+{% for item in menu_items %}
+    <li class="nav-item{% if item.has_children_in_menu %}-dropdown{% endif %}">
+        <a href="{{ item.href }}"{% if item.has_children_in_menu %} class="dropdown-toggle" id="ddtoggle_{{ item.link_page.pk }}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"{% else %} class="nav-link {{ item.active_class }}"{% endif %}>{{ item.text }}{% if item.has_children_in_menu %} <span class="caret"></span>{% endif %}</a>
+        {% if item.has_children_in_menu %}
+        	{% sub_menu item template="Menu/sub_menu.html" %}
+        {% endif %}
+    </li>
+{% endfor %}
+</ul>

@@ -1,0 +1,9 @@
+{% if blogs %}
+    <div class="row mx-auto justify-content-center">
+        {% for blog in blogs %}
+                {% include "blog/includes/home_list_item.html" %}
+           {% endfor %}
+    </div>
+{% endif %}
+
+

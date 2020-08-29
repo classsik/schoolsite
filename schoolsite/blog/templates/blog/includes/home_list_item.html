@@ -1,0 +1,16 @@
+{% load static wagtailcore_tags wagtailimages_tags %}
+    
+<div class="card col-xs-10 col-sm-10 col-md-4 col-lg-3 col-xl-3 mx-2 mb-3 shadow-1-strong">
+    {% if blog.main_image %}
+        {% image blog.main_image original as img %}
+            <a href="{% pageurl blog %}"><img class="card-img-top mt-3 shadow-2-strong rounded" src="{{ img.url }}" /></a>
+    {% endif %}
+        <div class="card-body">
+            <h5 class="card-title">{{blog.title}}</h5>
+            <p class="card-text">
+                {{ blog.intro }}
+            </p>
+            <a href="{% pageurl blog %}"><button class="btn btn-outline-warning">Подробнее...</button></a>
+            <p class="mt-2 card-footer text-muted">{{ blog.date }}</p>
+        </div>
+</div>

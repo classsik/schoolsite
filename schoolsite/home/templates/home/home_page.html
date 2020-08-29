@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% load static home_tags wagtailimages_tags wagtailembeds_tags %}
+
+{% block body_class %}template-homepage{% endblock %}
+
+
+
+
+{% block content %}
+<div class="">
+    <div class="mx-4 mt-1 text-center light-block">
+        <div id="carouselExampleSlidesOnly" class="carousel slide carousel-fade" data-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active" data-interval="7000">
+                {% image page.carousel_image_one width-1000 as img%}
+                <img src="{{img.url}}" class="img-fluid shadow-3-strong rounded" alt="...">
+            </div>
+            <div class="carousel-item" data-interval="7000">
+                {% image page.carousel_image_two width-1000 as img_two %}
+                <img src="{{img_two.url}}" class="img-fluid shadow-3-strong rounded" alt="...">
+            </div>
+          </div>
+        </div>
+    </div>
+    <svg class="wave-divider" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+             viewBox="0 24 150 28" preserveAspectRatio="none">
+            <defs>
+                <path id="gentle-wave"
+                      d="M-160 44c30 0
+        58-18 88-18s
+        58 18 88 18
+        58-18 88-18
+        58 18 88 18
+        v44h-352z"/>
+            </defs>
+            <g class="wave-parallax1">
+                <use xlink:href="#gentle-wave" x="50" y="3" fill="#ffbf94"/>
+            </g>
+            <g class="wave-parallax2">
+                <use xlink:href="#gentle-wave" x="50" y="0" fill="#ffa061"/>
+            </g>
+            <g class="wave-parallax3">
+                <use xlink:href="#gentle-wave" x="50" y="9" fill="#ff7733"/>
+            </g>
+            <g class="wave-parallax4">
+                <use xlink:href="#gentle-wave" x="50" y="6" fill="#f36223"/>
+            </g>
+        </svg>
+    <div class="dark-block"><p class="display-6">Последние новости школы:</p></div>
+    <svg class="wave-divider dark-bg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none">
+        <g class="wave-parallax1"><use xlink:href="#gentle-wave" x="50" y="3" fill="#ffbf94"/></g>
+        <g class="wave-parallax2"><use xlink:href="#gentle-wave" x="50" y="0" fill="#ffa061"/></g>
+        <g class="wave-parallax3"><use xlink:href="#gentle-wave" x="50" y="9" fill="#ff7733"/></g>
+        <g class="wave-parallax4"><use xlink:href="#gentle-wave" x="50" y="6" fill="#FFFFFF"/></g>
+    </svg>
+    <div class="light-block container">
+        {% blog_listing_homepage %}
+    </div>
+
+</div>
+
+
+{% endblock content %}
