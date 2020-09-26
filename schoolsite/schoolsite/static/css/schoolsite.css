@@ -187,6 +187,11 @@ html, body {
   text-overflow: ellipsis;
 }
 
+
+.gallery-thumbnail-container {
+  justify-content: center;
+}
+
 /*!
  * baguetteBox.js
  * @author  feimosi
